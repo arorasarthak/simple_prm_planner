@@ -1,0 +1,10 @@
+<launch>
+
+    <arg name="map" default="$(find ogm_to_mat)/maps/test.yaml" />
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map)" />
+    <node name="planning_node" pkg="planning_assignment" type="main.py" output="screen" />
+    <!--<node name="rviz_node" pkg="rqt_gui" type="rqt_gui" />-->
+    <node type="rviz" name="rviz" pkg="rviz" args="-d $(find planning_assignment)/rviz/my_config.rviz" />
+    <node pkg="planning_assignment" name="goal_node" type="goal_node.py" />
+
+</launch>
